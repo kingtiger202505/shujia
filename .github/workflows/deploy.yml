@@ -18,11 +18,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
 
       - name: 3. 安装依赖并构建打包
         run: |
-          npm ci
+          npm install
           npm run build
 
       - name: 4. 通过 SCP 上传静态构建成果 (dist) 到宝塔服务器
@@ -44,6 +43,4 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT || 22 }}
           script: |
-            # 如果你的应用需要运行 PM2 或配置 Nginx 刷新，可以在此处编写命令：
-            # pm2 reload your-app || pm2 start ...
             echo "部署完成！"
