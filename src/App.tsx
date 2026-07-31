@@ -46,9 +46,19 @@ export default function App() {
     const saved = localStorage.getItem('shanghai_math_summer_progress');
     if (saved) {
       try {
-        return JSON.parse(saved);
+        const parsed = JSON.parse(saved);
+        return {
+          ...INITIAL_USER_PROGRESS,
+          ...parsed,
+          mistakes: Array.isArray(parsed?.mistakes) ? parsed.mistakes : [],
+          ownedEquipment: Array.isArray(parsed?.ownedEquipment) ? parsed.ownedEquipment : [],
+          unlockedChapters: Array.isArray(parsed?.unlockedChapters) && parsed.unlockedChapters.length > 0 ? parsed.unlockedChapters : INITIAL_USER_PROGRESS.unlockedChapters,
+          chapterStars: parsed?.chapterStars && typeof parsed.chapterStars === 'object' ? parsed.chapterStars : INITIAL_USER_PROGRESS.chapterStars,
+          completedQuestions: parsed?.completedQuestions && typeof parsed.completedQuestions === 'object' ? parsed.completedQuestions : {},
+          examHistory: Array.isArray(parsed?.examHistory) ? parsed.examHistory : [],
+        };
       } catch (e) {
-        console.error(e);
+        console.error('Failed to parse saved user progress:', e);
       }
     }
     return INITIAL_USER_PROGRESS;

@@ -32,7 +32,7 @@ export const ShopAndPetModal: React.FC<ShopAndPetModalProps> = ({
       let newPetLevel = prev.petLevel;
       let newPetExp = prev.petExp;
       let newEquippedHat = prev.equippedHat;
-      let newOwned = [...prev.ownedEquipment];
+      let newOwned = [...(prev.ownedEquipment || [])];
 
       if (item.type === 'pet_food') {
         newPetExp += 50;
@@ -145,7 +145,7 @@ export const ShopAndPetModal: React.FC<ShopAndPetModalProps> = ({
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {SHOP_ITEMS.map((item) => {
-                const isOwned = userProgress.ownedEquipment.includes(item.id);
+                const isOwned = (userProgress.ownedEquipment || []).includes(item.id);
 
                 return (
                   <div
