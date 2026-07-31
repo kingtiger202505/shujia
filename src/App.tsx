@@ -17,6 +17,7 @@ import { MistakeVaultModal } from './components/MistakeVaultModal';
 import { ShopAndPetModal } from './components/ShopAndPetModal';
 import { WorksheetExportModal } from './components/WorksheetExportModal';
 import { ExamModal } from './components/ExamModal';
+import { MultiplicationTableModal } from './components/MultiplicationTableModal';
 import { ArrowLeft, Sparkles, CheckCircle, Award } from 'lucide-react';
 
 const INITIAL_USER_PROGRESS: UserProgress = {
@@ -69,6 +70,7 @@ export default function App() {
   const [isShopOpen, setIsShopOpen] = useState(false);
   const [isWorksheetOpen, setIsWorksheetOpen] = useState(false);
   const [isExamOpen, setIsExamOpen] = useState(false);
+  const [isMultiplicationModalOpen, setIsMultiplicationModalOpen] = useState(false);
 
   // Save progress locally
   useEffect(() => {
@@ -149,10 +151,11 @@ export default function App() {
       
       {/* Header */}
       <HeaderNavbar
-        userProgress={userProgress}
+        userProgress={{ ...userProgress, selectedSubject }}
         selectedSubject={selectedSubject}
         onSubjectChange={(s) => {
           setSelectedSubject(s);
+          setUserProgress((prev) => ({ ...prev, selectedSubject: s }));
           setActiveChapter(null);
         }}
         onGradeChange={handleGradeChange}
@@ -165,6 +168,7 @@ export default function App() {
         onOpenShop={() => setIsShopOpen(true)}
         onOpenWorksheet={() => setIsWorksheetOpen(true)}
         onOpenExam={() => setIsExamOpen(true)}
+        onOpenMultiplicationTable={() => setIsMultiplicationModalOpen(true)}
         activeTab={activeTab}
         onTabChange={(tab) => {
           setActiveTab(tab);
@@ -331,6 +335,17 @@ export default function App() {
           setUserProgress((prev) => ({
             ...prev,
             goldCoins: prev.goldCoins + earnedCoins,
+          }));
+        }}
+      />
+
+      <MultiplicationTableModal
+        isOpen={isMultiplicationModalOpen}
+        onClose={() => setIsMultiplicationModalOpen(false)}
+        onRewardCoins={(amount) => {
+          setUserProgress((prev) => ({
+            ...prev,
+            goldCoins: prev.goldCoins + amount,
           }));
         }}
       />

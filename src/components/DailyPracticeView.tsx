@@ -62,11 +62,20 @@ export const DailyPracticeView: React.FC<DailyPracticeViewProps> = ({
         {/* Filters and AI generator button */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
           <div className="flex items-center gap-1 bg-gray-100 p-1 rounded-2xl text-xs font-semibold overflow-x-auto max-w-full no-scrollbar">
-            {[
+            {userProgress.selectedSubject === 'math' ? [
               { id: 'all', label: '全部考题' },
+              { id: 'multiplication_table', label: '⚡ 乘法口诀' },
               { id: 'calc', label: '🧮 计算巧算' },
               { id: 'word', label: '🎒 应用题' },
               { id: 'logic', label: '🧩 逻辑推理' },
+            ] : userProgress.selectedSubject === 'chinese' ? [
+              { id: 'all', label: '全部考题' },
+              { id: 'chinese_vocab', label: '📖 拼音成语积累' },
+              { id: 'chinese_reading', label: '📜 诗词鉴赏与阅读' },
+            ] : [
+              { id: 'all', label: '全部考题' },
+              { id: 'english_vocab', label: '🔤 词汇分类特训' },
+              { id: 'english_grammar', label: '✍️ 语法与情景交际' },
             ].map((cat) => (
               <button
                 key={cat.id}

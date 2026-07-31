@@ -2,7 +2,7 @@ export type GradeLevel = 'g1_to_g2' | 'g3_to_g4';
 
 export type Subject = 'math' | 'chinese' | 'english';
 
-export type QuestionCategory = 'calc' | 'word' | 'logic' | 'chinese_vocab' | 'chinese_reading' | 'english_vocab' | 'english_grammar' | 'english_reading';
+export type QuestionCategory = 'calc' | 'word' | 'logic' | 'multiplication_table' | 'chinese_vocab' | 'chinese_reading' | 'english_vocab' | 'english_grammar' | 'english_reading';
 
 export interface Question {
   id: string;

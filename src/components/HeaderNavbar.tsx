@@ -29,6 +29,7 @@ interface HeaderNavbarProps {
   onOpenShop: () => void;
   onOpenWorksheet: () => void;
   onOpenExam: () => void;
+  onOpenMultiplicationTable?: () => void;
   activeTab: 'adventure' | 'practice';
   onTabChange: (tab: 'adventure' | 'practice') => void;
 }
@@ -44,6 +45,7 @@ export const HeaderNavbar: React.FC<HeaderNavbarProps> = ({
   onOpenShop,
   onOpenWorksheet,
   onOpenExam,
+  onOpenMultiplicationTable,
   activeTab,
   onTabChange,
 }) => {
@@ -142,14 +144,26 @@ export const HeaderNavbar: React.FC<HeaderNavbarProps> = ({
           </div>
 
           {/* Gamified Currency Stats & Action Tools */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            {/* Multiplication Table Button */}
+            {onOpenMultiplicationTable && (
+              <button
+                onClick={onOpenMultiplicationTable}
+                className="flex items-center gap-1 bg-gradient-to-r from-amber-500 to-yellow-500 hover:brightness-105 text-white px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-bold transition-all shadow-md shadow-amber-100 shrink-0"
+                title="九九乘法口诀特训"
+              >
+                <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-yellow-100 fill-yellow-100" />
+                <span className="hidden xs:inline">乘法口诀</span>
+              </button>
+            )}
+
             {/* Exam Modal Button */}
             <button
               onClick={onOpenExam}
-              className="flex items-center gap-1 bg-gradient-to-r from-orange-500 to-amber-500 hover:brightness-105 text-white px-3 py-1.5 rounded-xl text-xs font-bold transition-all shadow-md shadow-orange-100"
+              className="flex items-center gap-1 bg-gradient-to-r from-orange-500 to-amber-500 hover:brightness-105 text-white px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-bold transition-all shadow-md shadow-orange-100 shrink-0"
               title="全科期末模拟测试"
             >
-              <FileText className="w-4 h-4 text-white" />
+              <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
               <span className="hidden sm:inline">期末考场</span>
             </button>
 
