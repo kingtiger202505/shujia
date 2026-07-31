@@ -1,0 +1,48 @@
+name: Deploy to Baota Server
+
+on:
+  push:
+    branches:
+      - main # 或者 master，当代码推送到 main 分支时自动触发
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 1. 拉取仓库代码
+        uses: actions/checkout@v4
+
+      - name: 2. 设置 Node.js 环境
+        uses: actions/with-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: 3. 安装依赖与打包构建
+        run: |
+          npm ci
+          npm run build
+
+      - name: 4. 通过 SSH 上传打包后的文件到宝塔服务器
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_PORT || 22 }}
+          source: "dist/*, server.ts, package.json"
+          target: "${{ secrets.SERVER_TARGET_DIR || '/www/wwwroot/my-app' }}"
+          strip_components: 0
+
+      - name: 5. 远程执行 PM2 重启应用 (如果是全栈/Express服务)
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_PORT || 22 }}
+          script: |
+            cd ${{ secrets.SERVER_TARGET_DIR || '/www/wwwroot/my-app' }}
+            npm install --production
+            pm2 reload app || pm2 start dist/server.cjs --name "my-app"

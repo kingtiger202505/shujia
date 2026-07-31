@@ -1,0 +1,6 @@
+{
+  "name": "上海暑期全科衔接大闯关与期末测试",
+  "description": "专为上海1升2与3升4学生打造的语文、数学、英语暑期衔接练习与期末模拟考试，含AI全科导师、草稿纸、试卷导出与趣味闯关。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
