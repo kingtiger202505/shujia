@@ -50,35 +50,49 @@ export const DailyPracticeView: React.FC<DailyPracticeViewProps> = ({
           <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
             <Zap className="w-6 h-6 text-indigo-600" />
             暑期每日刷题与分类特训
+            <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
+              共 {questions.length} 道考题
+            </span>
           </h2>
           <p className="text-xs text-gray-500 mt-1">
-            自由挑选计算题、应用题或逻辑推理训练，巩固旧知，轻松衔接新课！
+            自由挑选计算题、应用题或逻辑推理训练，题目随时无限AI扩充！
           </p>
         </div>
 
-        {/* Filters */}
-        <div className="flex items-center gap-1.5 bg-gray-100 p-1 rounded-2xl text-xs font-semibold">
-          {[
-            { id: 'all', label: '全部考题' },
-            { id: 'calc', label: '🧮 计算巧算' },
-            { id: 'word', label: '🎒 应用题' },
-            { id: 'logic', label: '🧩 逻辑推理' },
-          ].map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => {
-                setSelectedCat(cat.id as any);
-                setCurrentIndex(0);
-              }}
-              className={`px-3 py-1.5 rounded-xl transition-all ${
-                selectedCat === cat.id
-                  ? 'bg-white text-indigo-600 font-bold shadow-xs'
-                  : 'text-gray-600 hover:text-gray-900'
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
+        {/* Filters and AI generator button */}
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="flex items-center gap-1.5 bg-gray-100 p-1 rounded-2xl text-xs font-semibold">
+            {[
+              { id: 'all', label: '全部考题' },
+              { id: 'calc', label: '🧮 计算巧算' },
+              { id: 'word', label: '🎒 应用题' },
+              { id: 'logic', label: '🧩 逻辑推理' },
+            ].map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => {
+                  setSelectedCat(cat.id as any);
+                  setCurrentIndex(0);
+                }}
+                className={`px-3 py-1.5 rounded-xl transition-all ${
+                  selectedCat === cat.id
+                    ? 'bg-white text-indigo-600 font-bold shadow-xs'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+
+          <button
+            onClick={onGenerateMoreAiQuestions}
+            className="flex items-center gap-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold text-xs px-3.5 py-2 rounded-2xl shadow-xs transition-all"
+            title="点击由AI导师实时出题"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-yellow-300 animate-spin" />
+            <span>AI无限生成新题</span>
+          </button>
         </div>
       </div>
 

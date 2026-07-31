@@ -97,22 +97,22 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   return (
     <div className="bg-white rounded-3xl shadow-xl border border-amber-100 overflow-hidden transition-all my-4">
       {/* Question Header Status */}
-      <div className="bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/10 px-6 py-4 border-b border-amber-100 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <span className="bg-amber-500 text-white font-black text-xs px-3 py-1 rounded-full shadow-xs">
+      <div className="bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/10 px-4 sm:px-6 py-3 sm:py-4 border-b border-amber-100 flex flex-wrap sm:flex-nowrap items-center justify-between gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <span className="bg-amber-500 text-white font-black text-[11px] sm:text-xs px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full shadow-xs">
             第 {questionIndex + 1} / {totalQuestions} 题
           </span>
-          <span className="text-xs font-bold text-amber-900 bg-amber-100/80 px-2.5 py-0.5 rounded-full">
-            {question.category === 'calc' ? '🧮 计算与巧算' : question.category === 'word' ? '🎒 应用题大本营' : '🧩 逻辑推理训练'}
+          <span className="text-[11px] sm:text-xs font-bold text-amber-900 bg-amber-100/80 px-2 sm:px-2.5 py-0.5 rounded-full">
+            {question.category === 'calc' ? '🧮 计算巧算' : question.category === 'word' ? '🎒 应用题' : '🧩 逻辑推理'}
           </span>
         </div>
 
         {/* Action controls */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {/* Read Aloud Button */}
           <button
             onClick={handleReadQuestion}
-            className={`flex items-center gap-1 text-xs px-2.5 py-1 rounded-xl border transition-all font-semibold ${
+            className={`flex items-center gap-1 text-[11px] sm:text-xs px-2 sm:px-2.5 py-1 rounded-xl border transition-all font-semibold ${
               isReading
                 ? 'bg-amber-500 text-white border-amber-600 animate-pulse'
                 : 'bg-amber-50 hover:bg-amber-100 text-amber-800 border-amber-200'
@@ -120,22 +120,22 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
             title="语音朗读题目"
           >
             {isReading ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-amber-600" />}
-            <span>{isReading ? '停止朗读' : '语音朗读'}</span>
+            <span className="hidden xs:inline">{isReading ? '停止' : '朗读'}</span>
           </button>
 
           {/* Scratchpad Button */}
           <button
             onClick={onOpenScratchpad}
-            className="flex items-center gap-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs px-2.5 py-1 rounded-xl border border-emerald-200 transition-all font-semibold"
+            className="flex items-center gap-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-[11px] sm:text-xs px-2 sm:px-2.5 py-1 rounded-xl border border-emerald-200 transition-all font-semibold"
           >
             <PenTool className="w-3.5 h-3.5" />
-            <span>草稿纸</span>
+            <span>草稿箱</span>
           </button>
 
           {/* AI Tutor Hint */}
           <button
             onClick={() => onOpenAiCoachForQuestion(question)}
-            className="flex items-center gap-1 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs px-2.5 py-1 rounded-xl border border-indigo-200 transition-all font-semibold"
+            className="flex items-center gap-1 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-[11px] sm:text-xs px-2 sm:px-2.5 py-1 rounded-xl border border-indigo-200 transition-all font-semibold"
           >
             <Bot className="w-3.5 h-3.5 text-indigo-600" />
             <span>AI提示</span>
@@ -144,7 +144,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
       </div>
 
       {/* Main Question Content */}
-      <div className="p-6 sm:p-8">
+      <div className="p-4 sm:p-8">
         {/* Title */}
         <h3 className="text-lg sm:text-xl font-bold text-gray-900 leading-snug">
           {question.title}

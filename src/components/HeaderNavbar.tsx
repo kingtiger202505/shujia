@@ -60,43 +60,43 @@ export const HeaderNavbar: React.FC<HeaderNavbarProps> = ({
         <div className="flex items-center justify-between h-16 gap-2">
           
           {/* App Logo & Grade / Subject Selector */}
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-400 flex items-center justify-center text-white shadow-md shadow-orange-200">
-              <Sparkles className="w-6 h-6 animate-pulse" />
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-400 flex items-center justify-center text-white shadow-md shadow-orange-200 shrink-0">
+              <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 animate-pulse" />
             </div>
             <div>
-              <h1 className="font-bold text-gray-900 text-base sm:text-lg leading-tight flex items-center gap-1.5">
-                上海全科暑期大闯关
-                <span className="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 font-medium">
-                  沪教版衔接
+              <h1 className="font-bold text-gray-900 text-sm sm:text-lg leading-tight flex items-center gap-1">
+                <span>上海全科暑期闯关</span>
+                <span className="hidden xs:inline-block text-[10px] sm:text-xs px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-800 font-medium">
+                  沪教衔接
                 </span>
               </h1>
-              <div className="flex items-center gap-2 mt-0.5">
+              <div className="flex items-center gap-1.5 mt-0.5">
                 {/* Grade Switcher Pills */}
                 <button
                   onClick={() => onGradeChange('g1_to_g2')}
-                  className={`text-xs px-2 py-0.5 rounded-full transition-all font-semibold ${
+                  className={`text-[10px] sm:text-xs px-2 py-0.5 rounded-full transition-all font-semibold ${
                     userProgress.selectedGrade === 'g1_to_g2'
                       ? 'bg-orange-500 text-white shadow-xs'
                       : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                   }`}
                 >
-                  1升2年级
+                  1升2
                 </button>
                 <button
                   onClick={() => onGradeChange('g3_to_g4')}
-                  className={`text-xs px-2 py-0.5 rounded-full transition-all font-semibold ${
+                  className={`text-[10px] sm:text-xs px-2 py-0.5 rounded-full transition-all font-semibold ${
                     userProgress.selectedGrade === 'g3_to_g4'
                       ? 'bg-indigo-600 text-white shadow-xs'
                       : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                   }`}
                 >
-                  3升4年级
+                  3升4
                 </button>
 
-                {/* Subject Pills */}
-                <div className="h-3 w-px bg-gray-200 my-auto hidden sm:block" />
-                <div className="hidden sm:flex items-center gap-1">
+                {/* Subject Pills for Desktop/Tablet */}
+                <div className="h-3 w-px bg-gray-200 my-auto hidden md:block" />
+                <div className="hidden md:flex items-center gap-1">
                   {(['math', 'chinese', 'english'] as Subject[]).map((s) => (
                     <button
                       key={s}
@@ -224,26 +224,46 @@ export const HeaderNavbar: React.FC<HeaderNavbarProps> = ({
 
         </div>
 
-        {/* Mobile Nav Switcher */}
-        <div className="flex md:hidden border-t border-gray-100 py-2 justify-around text-xs font-medium">
-          <button
-            onClick={() => onTabChange('adventure')}
-            className={`flex items-center gap-1 px-3 py-1 rounded-lg ${
-              activeTab === 'adventure' ? 'bg-orange-50 text-orange-600 font-bold' : 'text-gray-600'
-            }`}
-          >
-            <Compass className="w-3.5 h-3.5" />
-            闯关地图
-          </button>
-          <button
-            onClick={() => onTabChange('practice')}
-            className={`flex items-center gap-1 px-3 py-1 rounded-lg ${
-              activeTab === 'practice' ? 'bg-indigo-50 text-indigo-600 font-bold' : 'text-gray-600'
-            }`}
-          >
-            <Zap className="w-3.5 h-3.5" />
-            自由刷题
-          </button>
+        {/* Mobile Nav Switcher & Subject Pills */}
+        <div className="flex md:hidden border-t border-gray-100 py-2 items-center justify-between gap-1 text-xs font-medium px-1">
+          {/* Tabs */}
+          <div className="flex items-center gap-1 bg-gray-100/80 p-0.5 rounded-xl">
+            <button
+              onClick={() => onTabChange('adventure')}
+              className={`flex items-center gap-1 px-2.5 py-1 rounded-lg transition-all text-xs ${
+                activeTab === 'adventure' ? 'bg-white text-orange-600 font-bold shadow-xs' : 'text-gray-600'
+              }`}
+            >
+              <Compass className="w-3.5 h-3.5" />
+              <span>地图</span>
+            </button>
+            <button
+              onClick={() => onTabChange('practice')}
+              className={`flex items-center gap-1 px-2.5 py-1 rounded-lg transition-all text-xs ${
+                activeTab === 'practice' ? 'bg-white text-indigo-600 font-bold shadow-xs' : 'text-gray-600'
+              }`}
+            >
+              <Zap className="w-3.5 h-3.5" />
+              <span>刷题</span>
+            </button>
+          </div>
+
+          {/* Subjects for mobile */}
+          <div className="flex items-center gap-1 bg-amber-50/80 p-0.5 rounded-xl border border-amber-200/60">
+            {(['math', 'chinese', 'english'] as Subject[]).map((s) => (
+              <button
+                key={s}
+                onClick={() => onSubjectChange(s)}
+                className={`text-[11px] px-2 py-1 rounded-lg font-bold transition-all ${
+                  selectedSubject === s
+                    ? 'bg-amber-500 text-white shadow-xs'
+                    : 'text-amber-800 hover:bg-amber-100'
+                }`}
+              >
+                {s === 'math' ? '数学' : s === 'chinese' ? '语文' : '英语'}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </header>

@@ -865,6 +865,374 @@ export const QUESTIONS_DATABASE: Question[] = [
     trapNotice: '看清答句回答的是人物（sister），选择对应的疑问词 Who。',
     bridgeTip: '衔接四年级特殊疑问句系统梳理。',
     difficulty: 1
+  },
+
+  // ==========================================
+  // 【新增：海量精品考题扩展包 - 数学 / 语文 / 英语】
+  // ==========================================
+
+  // --- 1升2 数学扩展 ---
+  {
+    id: 'g1_calc_5',
+    grade: 'g1_to_g2',
+    subject: 'math',
+    chapterId: 'g1_ch1',
+    category: 'calc',
+    title: '【巧算三个数连加】凑整与加法结合律',
+    expression: '34 + 19 + 26 = ?',
+    options: ['79', '69', '89', '77'],
+    correctIndex: 0,
+    keyPoint: '寻找个位互补的两个数先相加（4与6凑十）',
+    steps: [
+      '观察三个加数：34、19、26。',
+      '发现 34 的个位是 4，26 的个位是 6，4 + 6 = 10！',
+      '把 34 和 26 结合先算：34 + 26 = 60。',
+      '再加上 19：60 + 19 = 79。',
+      '算得又快又准！'
+    ],
+    trapNotice: '认准 4与6、3与7、2与8 的凑十对子。',
+    bridgeTip: '巩固两位数加法，衔接二年级上册三位巧算。',
+    difficulty: 1
+  },
+  {
+    id: 'g1_calc_6',
+    grade: 'g1_to_g2',
+    subject: 'math',
+    chapterId: 'g1_ch1',
+    category: 'calc',
+    title: '【乘法初步】求 4 个 6 相加的和',
+    expression: '6 + 6 + 6 + 6 = ?',
+    options: ['6 × 4 = 24', '4 + 6 = 10', '6 + 4 = 10', '4 × 4 = 16'],
+    correctIndex: 0,
+    keyPoint: '求几个相同加数的和，用乘法最简便',
+    steps: [
+      '相同加数是 6，共有 4 个 6。',
+      '乘法算式写成 6 × 4 或 4 × 6。',
+      '计算：6+6=12，12+6=18，18+6=24。',
+      '6 × 4 = 24。'
+    ],
+    trapNotice: '不要写成 6+4=10 哦！乘法表示“几个几相加”。',
+    bridgeTip: '二年级核心要领“九九乘法表预习与运用”。',
+    difficulty: 1
+  },
+  {
+    id: 'g1_calc_7',
+    grade: 'g1_to_g2',
+    subject: 'math',
+    chapterId: 'g1_ch1',
+    category: 'calc',
+    title: '【退位减法巧算】多减要加回',
+    expression: '92 - 48 = ?',
+    options: ['44', '54', '42', '46'],
+    correctIndex: 0,
+    keyPoint: '巧算减法：把 48 看成 50，92 - 50 = 42，42 + 2 = 44',
+    steps: [
+      '把 48 看作接近的整十数 50。',
+      '计算 92 - 50 = 42。',
+      '因为多减了 2，所以要加上 2：42 + 2 = 44。',
+      '用竖式检验：个位 12-8=4，十位 8-4=4，结果是 44。'
+    ],
+    trapNotice: '看清多减了要“加回来”，不要多减了又减去！',
+    bridgeTip: '培养口算速算直觉。',
+    difficulty: 2
+  },
+  {
+    id: 'g1_word_5',
+    grade: 'g1_to_g2',
+    subject: 'math',
+    chapterId: 'g1_ch2',
+    category: 'word',
+    title: '【间隔问题】剪绳子与段数',
+    subtitle: '小胖把一条长彩带剪了 3 刀，彩带被剪成了多少段？',
+    options: ['4 段', '3 段', '5 段', '2 段'],
+    correctIndex: 0,
+    keyPoint: '段数 = 剪的次数 + 1',
+    steps: [
+      '拿一根绳子模拟：',
+      '剪 1 刀 -> 变成 2 段；',
+      '剪 2 刀 -> 变成 3 段；',
+      '剪 3 刀 -> 变成 3 + 1 = 4 段！'
+    ],
+    trapNotice: '经典误区：认为剪几刀就是几段。记牢“段数总是比次数多 1”。',
+    bridgeTip: '二年级植树模型与锯木头问题萌芽。',
+    difficulty: 2
+  },
+  {
+    id: 'g1_word_6',
+    grade: 'g1_to_g2',
+    subject: 'math',
+    chapterId: 'g1_ch2',
+    category: 'word',
+    title: '【倒推问题】小熊吃苹果',
+    subtitle: '小熊篮子里有一堆苹果。第一天吃了一半，第二天吃了剩下的一半，这时篮子里还剩 3 个苹果。篮子里原来有多少个苹果？',
+    options: ['12 个', '9 个', '6 个', '15 个'],
+    correctIndex: 0,
+    keyPoint: '从结果顺藤摸瓜“倒推还原”思维',
+    steps: [
+      '从最后往前推：',
+      '第二天吃剩下的一半后剩 3 个，说明第二天吃之前有 3 × 2 = 6 个。',
+      '第一天吃了一半后剩下 6 个，说明原来有 6 × 2 = 12 个。',
+      '检验：12个吃一半剩6个，6个吃一半剩3个，完全正确！'
+    ],
+    trapNotice: '逆向推导时，一半对应的运算是乘 2，不是加 2！',
+    bridgeTip: '逆向思维训练，上海奥数入门高频题。',
+    difficulty: 3
+  },
+  {
+    id: 'g1_word_7',
+    grade: 'g1_to_g2',
+    subject: 'math',
+    chapterId: 'g1_ch2',
+    category: 'word',
+    title: '【年龄不变原理】岁月同增',
+    subtitle: '今年哥哥 11 岁，妹妹 7 岁。5 年后，哥哥比妹妹大几岁？',
+    options: ['4 岁', '9 岁', '5 岁', '12 岁'],
+    correctIndex: 0,
+    keyPoint: '年龄差永远保持不变！',
+    steps: [
+      '今年哥哥比妹妹大：11 - 7 = 4（岁）。',
+      '5 年后，哥哥涨了 5 岁（16岁），妹妹也涨了 5 岁（12岁）。',
+      '5 年后两人相差：16 - 12 = 4（岁）。',
+      '关键结论：无论过多少年，两人的年龄差永远不变！'
+    ],
+    trapNotice: '不要把 4 加上 5 变成 9 岁！两个人的年龄是同时增长的。',
+    bridgeTip: '年龄问题核心性质——差不变。',
+    difficulty: 1
+  },
+  {
+    id: 'g1_logic_4',
+    grade: 'g1_to_g2',
+    subject: 'math',
+    chapterId: 'g1_ch3',
+    category: 'logic',
+    title: '【奇偶性判断】单双数的和',
+    subtitle: '不用具体计算，请判断：1 + 3 + 5 + 7 + 9 的结果是单数（奇数）还是双数（偶数）？',
+    options: ['单数（奇数）', '双数（偶数）', '无法确定', '既是单数也是双数'],
+    correctIndex: 0,
+    keyPoint: '奇数个奇数相加，结果必为奇数',
+    steps: [
+      '1, 3, 5, 7, 9 都是单数（奇数），一共有 5 个（5 是单数）。',
+      '规则：单数 + 单数 = 双数（2个单数变双数）。',
+      '4 个单数加起来是双数，再加第 5 个单数，结果必然是单数！',
+      '验证计算：1+3+5+7+9 = 25，25 是单数。'
+    ],
+    trapNotice: '看清加数的个数，奇数个奇数相加是奇数，偶数个奇数相加是偶数。',
+    bridgeTip: '数论初步，培养不死算直接看规律的思维。',
+    difficulty: 2
+  },
+  {
+    id: 'g1_logic_5',
+    grade: 'g1_to_g2',
+    subject: 'math',
+    chapterId: 'g1_ch3',
+    category: 'logic',
+    title: '【比较逻辑】轻重推断',
+    subtitle: '有红、黄、蓝三个皮球。红球比黄球重，蓝球比红球重。这三个皮球中最重的是哪一个？',
+    options: ['蓝球', '红球', '黄球', '一样重'],
+    correctIndex: 0,
+    keyPoint: '逻辑传递比较（A < B < C）',
+    steps: [
+      '已知 1：黄球 < 红球（红球比黄球重）。',
+      '已知 2：红球 < 蓝球（蓝球比红球重）。',
+      '综合链条：黄球 < 红球 < 蓝球。',
+      '最重的是蓝球，最轻的是黄球。'
+    ],
+    trapNotice: '分清“谁比谁重”，画箭头或者从轻到重排序。',
+    bridgeTip: '培养逻辑连贯推理能力。',
+    difficulty: 1
+  },
+
+  // --- 3升4 数学扩展 ---
+  {
+    id: 'g3_calc_5',
+    grade: 'g3_to_g4',
+    subject: 'math',
+    chapterId: 'g3_ch1',
+    category: 'calc',
+    title: '【乘法分配律】减法拆数巧算',
+    expression: '125 × 79 = ?',
+    options: ['9875', '9805', '10000', '9725'],
+    correctIndex: 0,
+    keyPoint: '125 × (80 - 1) = 125 × 80 - 125 × 1',
+    steps: [
+      '把接近整十整百的 79 拆成 (80 - 1)。',
+      '原式转化为：125 × (80 - 1)。',
+      '运用乘法分配律：125 × 80 - 125 × 1。',
+      '计算：10000 - 125 = 9875。',
+      '极大地简化了三位数乘两位数的繁琐计算！'
+    ],
+    trapNotice: '注意小括号里是减法时，分配出来也是减法！125×80 减去 125×1。',
+    bridgeTip: '四年级简便运算核心技能——构造整百整千拆数。',
+    difficulty: 3
+  },
+  {
+    id: 'g3_calc_6',
+    grade: 'g3_to_g4',
+    subject: 'math',
+    chapterId: 'g3_ch1',
+    category: 'calc',
+    title: '【除法简算】连续除以两个数',
+    expression: '3600 ÷ 25 ÷ 4 = ?',
+    options: ['36', '360', '90', '100'],
+    correctIndex: 0,
+    keyPoint: '除法性质：a ÷ b ÷ c = a ÷ (b × c)',
+    steps: [
+      '观察除数：25 和 4 相乘正好等于 100！',
+      '运用除法性质把连续除法变成除以积：3600 ÷ (25 × 4)。',
+      '计算括号内：25 × 4 = 100。',
+      '计算：3600 ÷ 100 = 36。'
+    ],
+    trapNotice: '加上括号后，里面的 ÷ 要变成 ×！（除以25再除以4，相当于一共除以了100）。',
+    bridgeTip: '四年级上册除法性质巧算。',
+    difficulty: 2
+  },
+  {
+    id: 'g3_word_4',
+    grade: 'g3_to_g4',
+    subject: 'math',
+    chapterId: 'g3_ch2',
+    category: 'word',
+    title: '【差倍问题】倍数与差值求数',
+    subtitle: '上海科技馆门票，成人票价格是儿童票的 3 倍。一张成人票比一张儿童票贵 60 元。成人票和儿童票各多少钱？',
+    diagramType: 'bar',
+    options: ['成人票 90 元，儿童票 30 元', '成人票 80 元，儿童票 20 元', '成人票 120 元，儿童票 40 元', '成人票 60 元，儿童票 20 元'],
+    correctIndex: 0,
+    keyPoint: '差倍问题公式：小数（1倍量） = 差 ÷ (倍数 - 1)',
+    steps: [
+      '分析倍数与份数：设儿童票为 1 份，成人票为 3 份。',
+      '两者的差值为：3 - 1 = 2 份，对应的实际金额是 60 元。',
+      '求 1 份（儿童票）：60 ÷ 2 = 30（元）。',
+      '求 3 份（成人票）：30 × 3 = 90（元）（或 30 + 60 = 90元）。',
+      '验证：90 ÷ 30 = 3 倍，90 - 30 = 60 元，正确！'
+    ],
+    trapNotice: '记准公式：“差”除以“倍数减1”得到的是1倍的小数（儿童票）。',
+    bridgeTip: '和倍、差倍、和差是小学应用题三大经典模型。',
+    difficulty: 2
+  },
+  {
+    id: 'g3_word_5',
+    grade: 'g3_to_g4',
+    subject: 'math',
+    chapterId: 'g3_ch2',
+    category: 'word',
+    title: '【和倍问题】总量与倍数分配',
+    subtitle: '学校图书室新买来故事书和科技书共 120 本，其中故事书的本数是科技书的 3 倍。故事书和科技书各有多少本？',
+    options: ['故事书 90 本，科技书 30 本', '故事书 80 本，科技书 40 本', '故事书 100 本，科技书 20 本', '故事书 75 本，科技书 45 本'],
+    correctIndex: 0,
+    keyPoint: '和倍问题公式：小数（1倍量） = 和 ÷ (倍数 + 1)',
+    steps: [
+      '把科技书看作 1 份，故事书是 3 份，总共是 1 + 3 = 4 份。',
+      '4 份一共是 120 本。',
+      '求 1 份（科技书）：120 ÷ 4 = 30（本）。',
+      '求 3 份（故事书）：30 × 3 = 90（本）（或 120 - 30 = 90本）。'
+    ],
+    trapNotice: '和倍问题用“倍数+1”，差倍问题用“倍数-1”，切勿混淆！',
+    bridgeTip: '提升应用题份数思维。',
+    difficulty: 2
+  },
+  {
+    id: 'g3_logic_4',
+    grade: 'g3_to_g4',
+    subject: 'math',
+    chapterId: 'g3_ch3',
+    category: 'logic',
+    title: '【抽屉原理/最不利原则】保证摸出同色球',
+    subtitle: '一个不透明的口袋里装有红、黄、蓝三种颜色的球各 10 个。至少要摸出多少个球，才能保证一定有 2 个球颜色相同？',
+    options: ['4 个', '3 个', '11 个', '31 个'],
+    correctIndex: 0,
+    keyPoint: '最不利原则：最倒霉的情况（每种颜色各摸出 1 个） + 1',
+    steps: [
+      '考虑最极端最倒霉的情况：',
+      '摸第 1 个是红色，摸第 2 个是黄色，摸第 3 个是蓝色（此时摸了 3 个，依然没有 2 个同色）。',
+      '此时袋子里只剩下这三种颜色，再摸第 4 个球，不论是什么颜色，都必定会和前面摸出的某一个颜色相同！',
+      '因此至少需要摸出 3 + 1 = 4 个球。'
+    ],
+    trapNotice: '题目问的是“保证一定”，必须考虑最倒霉的情况，不能凭运气！',
+    bridgeTip: '四年级上册高阶思维——鸽巢原理/抽屉原理。',
+    difficulty: 3
+  },
+
+  // --- 语文扩展 ---
+  {
+    id: 'g1_chi_5',
+    grade: 'g1_to_g2',
+    subject: 'chinese',
+    chapterId: 'g1_chi_ch1',
+    category: 'chinese_vocab',
+    title: '【字形加笔画】变新字练习',
+    subtitle: '给“日”字加一笔，不可能变成的字是哪一个？',
+    options: ['月', '目', '白', '田'],
+    correctIndex: 0,
+    keyPoint: '汉字结构与笔画变字积累',
+    steps: [
+      '“日”加一笔：加竖变“由”、“甲”、“申”；加横变“目”；加撇变“白”；框里加竖变“田”；加横变“旦”。',
+      '“月”是独立的象形字，无法通过给“日”加一笔变成。'
+    ],
+    trapNotice: '细心观察笔画位置，目、白、田、申、由、甲 都可以由 日 加一笔得到。',
+    bridgeTip: '一年级升二年级汉字识字基础。',
+    difficulty: 1
+  },
+  {
+    id: 'g3_chi_3',
+    grade: 'g3_to_g4',
+    subject: 'chinese',
+    chapterId: 'g3_chi_ch1',
+    category: 'chinese_reading',
+    title: '【关联词搭配】表达逻辑关系',
+    subtitle: '请选择最恰当的关联词填空：“（  ）今天的风浪很大，小明（  ）坚持出海练习帆船。”',
+    options: ['虽然……但是……', '因为……所以……', '不仅……而且……', '如果……就……'],
+    correctIndex: 0,
+    keyPoint: '转折关系关联词（“虽然……但是……”）',
+    steps: [
+      '分析句意：“风浪很大”是困难不利条件，“坚持出海”是出乎意料的行动。',
+      '两句之间构成转折关系，应使用“虽然……但是……”。',
+      '“因为……所以……”表示因果关系，“不仅……而且……”表示递进关系。'
+    ],
+    trapNotice: '分清转折、因果、递进与假设关系的区别。',
+    bridgeTip: '四年级语文句子衔接与写作语法。',
+    difficulty: 2
+  },
+
+  // --- 英语扩展 ---
+  {
+    id: 'g1_eng_5',
+    grade: 'g1_to_g2',
+    subject: 'english',
+    chapterId: 'g1_eng_ch1',
+    category: 'english_vocab',
+    title: '【复数名词】以 -s 结尾的规则复数',
+    subtitle: 'Choose the correct sentence: "I can see three _____ in the park."',
+    options: ['dogs', 'dog', 'a dog', 'doges'],
+    correctIndex: 0,
+    keyPoint: '可数名词复数形式（three + 可数名词复数 dogs）',
+    steps: [
+      '数字 "three"（三个）大于 1，后面的可数名词 dog 必须使用复数形式。',
+      'Dog 的规则复数是在词尾直接加 -s，变为 dogs。',
+      '正确句子：I can see three dogs in the park.'
+    ],
+    trapNotice: '基数词大于1时，后面的可数名词千万别忘记加 -s！',
+    bridgeTip: '上海牛津英语 Unit 核心语法。',
+    difficulty: 1
+  },
+  {
+    id: 'g3_eng_3',
+    grade: 'g3_to_g4',
+    subject: 'english',
+    chapterId: 'g3_eng_ch1',
+    category: 'english_grammar',
+    title: '【一般过去时】规则动词加 -ed',
+    subtitle: 'Yesterday afternoon, Tom _____ his homework at home.',
+    options: ['finished', 'finishes', 'finish', 'is finishing'],
+    correctIndex: 0,
+    keyPoint: '一般过去时标志词 Yesterday 与动词过去式 (finish -> finished)',
+    steps: [
+      '标志词 "Yesterday afternoon"（昨天下午）表示过去发生的事，句子要用【一般过去时】。',
+      '动词 finish 的过去式是规则变化，在词尾加 -ed，变为 finished。',
+      '正确答案：finished。'
+    ],
+    trapNotice: '看到 yesterday, last night, ago 等标志词，要立刻反应出一般过去时！',
+    bridgeTip: '四年级英语核心语法——一般过去时。',
+    difficulty: 2
   }
 ];
 
@@ -881,7 +1249,7 @@ export const CHAPTERS_DATA: Chapter[] = [
     category: 'calc',
     recommendedLevel: '巩固1年级 -> 衔接2年级',
     themeColor: 'from-amber-500 to-orange-500',
-    questions: QUESTIONS_DATABASE.filter(q => q.grade === 'g1_to_g2' && (q.subject === 'math' || !q.subject) && (q.chapterId === 'g1_ch1' || q.category === 'calc'))
+    questions: QUESTIONS_DATABASE.filter(q => q.grade === 'g1_to_g2' && (q.subject === 'math' || !q.subject) && (q.chapterId === 'g1_ch1' || (!q.chapterId && q.category === 'calc')))
   },
   {
     id: 'g1_ch2',
@@ -894,7 +1262,7 @@ export const CHAPTERS_DATA: Chapter[] = [
     category: 'word',
     recommendedLevel: '巩固1年级 -> 衔接2年级',
     themeColor: 'from-emerald-500 to-teal-600',
-    questions: QUESTIONS_DATABASE.filter(q => q.grade === 'g1_to_g2' && (q.subject === 'math' || !q.subject) && (q.chapterId === 'g1_ch2' || q.category === 'word'))
+    questions: QUESTIONS_DATABASE.filter(q => q.grade === 'g1_to_g2' && (q.subject === 'math' || !q.subject) && (q.chapterId === 'g1_ch2' || (!q.chapterId && q.category === 'word')))
   },
   {
     id: 'g1_ch3',
@@ -907,7 +1275,7 @@ export const CHAPTERS_DATA: Chapter[] = [
     category: 'logic',
     recommendedLevel: '巩固1年级 -> 衔接2年级',
     themeColor: 'from-indigo-500 to-purple-600',
-    questions: QUESTIONS_DATABASE.filter(q => q.grade === 'g1_to_g2' && (q.subject === 'math' || !q.subject) && (q.chapterId === 'g1_ch3' || q.category === 'logic'))
+    questions: QUESTIONS_DATABASE.filter(q => q.grade === 'g1_to_g2' && (q.subject === 'math' || !q.subject) && (q.chapterId === 'g1_ch3' || (!q.chapterId && q.category === 'logic')))
   },
   {
     id: 'g1_ch4',
@@ -948,7 +1316,7 @@ export const CHAPTERS_DATA: Chapter[] = [
     category: 'calc',
     recommendedLevel: '巩固3年级 -> 衔接4年级',
     themeColor: 'from-blue-600 to-cyan-600',
-    questions: QUESTIONS_DATABASE.filter(q => q.grade === 'g3_to_g4' && (q.subject === 'math' || !q.subject) && (q.chapterId === 'g3_ch1' || q.category === 'calc'))
+    questions: QUESTIONS_DATABASE.filter(q => q.grade === 'g3_to_g4' && (q.subject === 'math' || !q.subject) && (q.chapterId === 'g3_ch1' || (!q.chapterId && q.category === 'calc')))
   },
   {
     id: 'g3_ch2',
@@ -961,7 +1329,7 @@ export const CHAPTERS_DATA: Chapter[] = [
     category: 'word',
     recommendedLevel: '巩固3年级 -> 衔接4年级',
     themeColor: 'from-rose-500 to-pink-600',
-    questions: QUESTIONS_DATABASE.filter(q => q.grade === 'g3_to_g4' && (q.subject === 'math' || !q.subject) && (q.chapterId === 'g3_ch2' || q.category === 'word'))
+    questions: QUESTIONS_DATABASE.filter(q => q.grade === 'g3_to_g4' && (q.subject === 'math' || !q.subject) && (q.chapterId === 'g3_ch2' || (!q.chapterId && q.category === 'word')))
   },
   {
     id: 'g3_ch3',
@@ -974,7 +1342,7 @@ export const CHAPTERS_DATA: Chapter[] = [
     category: 'logic',
     recommendedLevel: '巩固3年级 -> 衔接4年级',
     themeColor: 'from-violet-600 to-purple-800',
-    questions: QUESTIONS_DATABASE.filter(q => q.grade === 'g3_to_g4' && (q.subject === 'math' || !q.subject) && (q.chapterId === 'g3_ch3' || q.category === 'logic'))
+    questions: QUESTIONS_DATABASE.filter(q => q.grade === 'g3_to_g4' && (q.subject === 'math' || !q.subject) && (q.chapterId === 'g3_ch3' || (!q.chapterId && q.category === 'logic')))
   },
   {
     id: 'g3_ch4',
