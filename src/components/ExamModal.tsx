@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Subject, GradeLevel, Question } from '../types';
 import { QUESTIONS_DATABASE } from '../data/questionsData';
+import { generateBatchQuestions } from '../utils/questionGenerator';
 import { 
   FileText, 
   Clock, 
@@ -83,9 +84,18 @@ export const ExamModal: React.FC<ExamModalProps> = ({
     const subjectQuestions = QUESTIONS_DATABASE.filter(
       (q) => q.grade === selectedGrade && (q.subject === selectedSubject || (!q.subject && selectedSubject === 'math'))
     );
-    // 乱序抽取10题或全部
+    // 乱序抽取
     const shuffled = [...subjectQuestions].sort(() => 0.5 - Math.random());
-    setCurrentQuestions(shuffled.slice(0, 10));
+    const picked = shuffled.slice(0, 10);
+    
+    // 如果不足 10 道，用无限生成器补足 10 道试题
+    if (picked.length < 10) {
+      const need = 10 - picked.length;
+      const generated = generateBatchQuestions(need, selectedGrade, selectedSubject);
+      setCurrentQuestions([...picked, ...generated]);
+    } else {
+      setCurrentQuestions(picked);
+    }
   };
 
   const handleSelectOption = (questionIndex: number, optionIndex: number) => {
@@ -132,35 +142,35 @@ export const ExamModal: React.FC<ExamModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
-      <div className="relative w-full max-w-3xl bg-white rounded-3xl shadow-2xl border border-amber-100 overflow-hidden flex flex-col max-h-[90vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
+      <div className="relative w-full max-w-3xl bg-white rounded-3xl shadow-2xl border border-amber-100 overflow-hidden flex flex-col max-h-[92vh]">
         
         {/* Modal Header */}
-        <div className="bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 text-white p-5 px-6 flex items-center justify-between shrink-0">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white">
-              <FileText className="w-6 h-6" />
+        <div className="bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 text-white p-3.5 sm:p-5 px-4 sm:px-6 flex items-center justify-between shrink-0">
+          <div className="flex items-center gap-2.5">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white shrink-0">
+              <FileText className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
             <div>
-              <h2 className="text-xl font-bold flex items-center gap-2">
-                暑期期末真题模拟大考场
-                <span className="text-xs bg-white/20 px-2 py-0.5 rounded-full font-medium">
-                  {selectedGrade === 'g1_to_g2' ? '一升二年级' : '三升四年级'}
+              <h2 className="text-base sm:text-xl font-bold flex items-center gap-1.5 leading-tight">
+                <span>期末真题模拟考场</span>
+                <span className="text-[10px] sm:text-xs bg-white/20 px-2 py-0.5 rounded-full font-medium shrink-0">
+                  {selectedGrade === 'g1_to_g2' ? '1升2' : '3升4'}
                 </span>
               </h2>
-              <p className="text-amber-100 text-xs">全科高频精选题型 · 沉浸式模拟测试与分析</p>
+              <p className="text-amber-100 text-[11px] sm:text-xs">全科高频精选题型 · 沉浸式模拟测试与分析</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+            className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors shrink-0"
           >
             <X className="w-5 h-5 text-white" />
           </button>
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 overflow-y-auto flex-1">
+        <div className="p-4 sm:p-6 overflow-y-auto flex-1">
           {!isExamStarted ? (
             /* Start Setup Screen */
             <div className="space-y-6 py-4">

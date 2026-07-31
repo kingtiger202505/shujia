@@ -60,20 +60,20 @@ export const ShopAndPetModal: React.FC<ShopAndPetModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-3 sm:p-6 animate-fadeIn">
-      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-3xl flex flex-col h-[85vh] overflow-hidden border border-amber-100">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-2 sm:p-6 animate-fadeIn">
+      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-3xl flex flex-col h-[88vh] sm:h-[85vh] overflow-hidden border border-amber-100">
         
         {/* Header */}
-        <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-6 py-4 flex items-center justify-between shadow-md">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-white/20 flex items-center justify-center">
-              <ShoppingBag className="w-6 h-6 text-yellow-200" />
+        <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between shadow-md">
+          <div className="flex items-center gap-2.5">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-white/20 flex items-center justify-center shrink-0">
+              <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-200" />
             </div>
             <div>
-              <h3 className="font-bold text-lg flex items-center gap-2">
-                数学英雄商店与萌宠小屋 🏰
+              <h3 className="font-bold text-base sm:text-lg leading-tight">
+                英雄商店与萌宠小屋
               </h3>
-              <p className="text-xs text-amber-100">做题赚金币，喂养专属学霸神兽与兑换魔法装备！</p>
+              <p className="text-[11px] sm:text-xs text-amber-100">做题赚金币，喂养专属神兽！</p>
             </div>
           </div>
 

@@ -23,23 +23,23 @@ export const MistakeVaultModal: React.FC<MistakeVaultModalProps> = ({
   const mistakeQuestions = QUESTIONS_DATABASE.filter((q) => mistakeIds.includes(q.id));
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-3 sm:p-6 animate-fadeIn">
-      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-3xl flex flex-col h-[82vh] overflow-hidden border border-rose-100">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-2 sm:p-6 animate-fadeIn">
+      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-3xl flex flex-col h-[85vh] sm:h-[82vh] overflow-hidden border border-rose-100">
         
         {/* Header */}
-        <div className="bg-gradient-to-r from-rose-600 to-pink-600 text-white px-6 py-4 flex items-center justify-between shadow-md">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-white/20 flex items-center justify-center">
-              <BookOpenCheck className="w-6 h-6 text-white" />
+        <div className="bg-gradient-to-r from-rose-600 to-pink-600 text-white px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between shadow-md">
+          <div className="flex items-center gap-2.5">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-white/20 flex items-center justify-center shrink-0">
+              <BookOpenCheck className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
             </div>
             <div>
-              <h3 className="font-bold text-lg flex items-center gap-2">
-                错题宝典本 (Mistake Vault)
-                <span className="bg-white text-rose-700 text-xs font-black px-2.5 py-0.5 rounded-full">
+              <h3 className="font-bold text-base sm:text-lg flex items-center gap-1.5 leading-tight">
+                <span>错题宝典本</span>
+                <span className="bg-white text-rose-700 text-[10px] sm:text-xs font-black px-2 py-0.5 rounded-full shrink-0">
                   {mistakeQuestions.length} 道待复习
                 </span>
               </h3>
-              <p className="text-xs text-rose-100">吃透错题是数学取得高分最重要的秘诀！</p>
+              <p className="text-[11px] sm:text-xs text-rose-100">吃透错题是取得高分最重要的秘诀！</p>
             </div>
           </div>
 

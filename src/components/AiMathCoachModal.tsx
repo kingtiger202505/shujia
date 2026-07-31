@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { GradeLevel, Question } from '../types';
 import { Bot, Send, Sparkles, X, Lightbulb, RefreshCw, MessageSquare, BookOpen, Volume2 } from 'lucide-react';
 import { speechManager } from '../utils/speech';
+import { generateBatchQuestions } from '../utils/questionGenerator';
 
 interface AiMathCoachModalProps {
   isOpen: boolean;
@@ -63,6 +64,7 @@ export const AiMathCoachModal: React.FC<AiMathCoachModalProps> = ({
 
   const handleGenerateAiQuestions = async (category: 'calc' | 'word' | 'logic') => {
     setGeneratingQuiz(true);
+    let newQuestions: Question[] = [];
     try {
       const res = await fetch('/api/math/generate', {
         method: 'POST',
@@ -70,8 +72,16 @@ export const AiMathCoachModal: React.FC<AiMathCoachModalProps> = ({
         body: JSON.stringify({ grade, category, count: 3 })
       });
       const data = await res.json();
-      if (data.questions && data.questions.length > 0 && onInsertGeneratedQuestions) {
-        onInsertGeneratedQuestions(data.questions);
+      if (data.questions && data.questions.length > 0) {
+        newQuestions = data.questions;
+      } else {
+        newQuestions = generateBatchQuestions(3, grade, 'math', category);
+      }
+    } catch (e) {
+      newQuestions = generateBatchQuestions(3, grade, 'math', category);
+    } finally {
+      if (newQuestions.length > 0 && onInsertGeneratedQuestions) {
+        onInsertGeneratedQuestions(newQuestions);
         setMessages(prev => [
           ...prev,
           {
@@ -80,16 +90,13 @@ export const AiMathCoachModal: React.FC<AiMathCoachModalProps> = ({
           }
         ]);
       }
-    } catch (e) {
-      console.error(e);
-    } finally {
       setGeneratingQuiz(false);
     }
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-3 sm:p-6 animate-fadeIn">
-      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-2xl flex flex-col h-[80vh] overflow-hidden border border-indigo-100">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-2 sm:p-6 animate-fadeIn">
+      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-2xl flex flex-col h-[85vh] sm:h-[80vh] overflow-hidden border border-indigo-100">
         
         {/* Header */}
         <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-5 py-4 flex items-center justify-between shadow-md">

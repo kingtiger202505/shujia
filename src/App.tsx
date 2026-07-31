@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { GradeLevel, Subject, Question, UserProgress, Chapter } from './types';
 import { CHAPTERS_DATA, QUESTIONS_DATABASE } from './data/questionsData';
+import { generateBatchQuestions } from './utils/questionGenerator';
 import { HeaderNavbar } from './components/HeaderNavbar';
 import { AdventureMap } from './components/AdventureMap';
 import { DailyPracticeView } from './components/DailyPracticeView';
@@ -122,8 +123,25 @@ export default function App() {
     });
   };
 
-  const handleInsertGeneratedQuestions = (newQs: Question[]) => {
-    setDynamicQuestions((prev) => [...prev, ...newQs]);
+  const handleInsertGeneratedQuestions = (newQs?: Question[]) => {
+    if (newQs && newQs.length > 0) {
+      setDynamicQuestions((prev) => [...newQs, ...prev]);
+    } else {
+      // 默认自动批量生成 5 道全新试题
+      const batch = generateBatchQuestions(5, userProgress.selectedGrade, selectedSubject);
+      setDynamicQuestions((prev) => [...batch, ...prev]);
+      
+      // 如果当前正处于某关卡内，把题目也实时追加到当前关卡里
+      if (activeChapter) {
+        setActiveChapter((prevCap) => {
+          if (!prevCap) return null;
+          return {
+            ...prevCap,
+            questions: [...prevCap.questions, ...batch]
+          };
+        });
+      }
+    }
   };
 
   return (
@@ -155,7 +173,7 @@ export default function App() {
       />
 
       {/* Main Container */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+      <main className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 pt-4 sm:pt-6">
         {/* Chapter Solver View */}
         {activeChapter ? (
           <div className="space-y-6 pb-12">
