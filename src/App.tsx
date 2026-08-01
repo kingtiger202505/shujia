@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { GradeLevel, Subject, Question, UserProgress, Chapter } from './types';
+import { GradeLevel, Subject, Question, UserProgress, Chapter, QuestionCategory } from './types';
 import { CHAPTERS_DATA, QUESTIONS_DATABASE } from './data/questionsData';
 import { generateBatchQuestions } from './utils/questionGenerator';
 import { HeaderNavbar } from './components/HeaderNavbar';
@@ -12,7 +12,6 @@ import { AdventureMap } from './components/AdventureMap';
 import { DailyPracticeView } from './components/DailyPracticeView';
 import { QuestionCard } from './components/QuestionCard';
 import { ScratchpadModal } from './components/ScratchpadModal';
-import { AiMathCoachModal } from './components/AiMathCoachModal';
 import { MistakeVaultModal } from './components/MistakeVaultModal';
 import { ShopAndPetModal } from './components/ShopAndPetModal';
 import { WorksheetExportModal } from './components/WorksheetExportModal';
@@ -135,24 +134,24 @@ export default function App() {
     });
   };
 
-  const handleInsertGeneratedQuestions = (newQs?: Question[]) => {
-    if (newQs && newQs.length > 0) {
-      setDynamicQuestions((prev) => [...newQs, ...prev]);
-    } else {
-      // 默认自动批量生成 5 道全新试题
-      const batch = generateBatchQuestions(5, userProgress.selectedGrade, selectedSubject);
-      setDynamicQuestions((prev) => [...batch, ...prev]);
-      
-      // 如果当前正处于某关卡内，把题目也实时追加到当前关卡里
-      if (activeChapter) {
-        setActiveChapter((prevCap) => {
-          if (!prevCap) return null;
-          return {
-            ...prevCap,
-            questions: [...prevCap.questions, ...batch]
-          };
-        });
-      }
+  const handleGenerateCustomQuestions = (
+    grade: GradeLevel,
+    subject: Subject,
+    category?: QuestionCategory,
+    count: number = 5
+  ) => {
+    const batch = generateBatchQuestions(count, grade, subject, category);
+    setDynamicQuestions((prev) => [...batch, ...prev]);
+    
+    // 如果当前正处于某关卡内，把题目也实时追加到当前关卡里
+    if (activeChapter) {
+      setActiveChapter((prevCap) => {
+        if (!prevCap) return null;
+        return {
+          ...prevCap,
+          questions: [...prevCap.questions, ...batch]
+        };
+      });
     }
   };
 
@@ -283,14 +282,7 @@ export default function App() {
             userProgress={userProgress}
             onAnswerSubmit={handleAnswerSubmit}
             onOpenScratchpad={() => setIsScratchpadOpen(true)}
-            onOpenAiCoachForQuestion={(q) => {
-              setAiCoachActiveQuestion(q);
-              setIsAiCoachOpen(true);
-            }}
-            onGenerateMoreAiQuestions={() => {
-              setAiCoachActiveQuestion(null);
-              setIsAiCoachOpen(true);
-            }}
+            onGenerateCustomQuestions={handleGenerateCustomQuestions}
           />
         )}
       </main>
@@ -299,14 +291,6 @@ export default function App() {
       <ScratchpadModal
         isOpen={isScratchpadOpen}
         onClose={() => setIsScratchpadOpen(false)}
-      />
-
-      <AiMathCoachModal
-        isOpen={isAiCoachOpen}
-        onClose={() => setIsAiCoachOpen(false)}
-        grade={userProgress.selectedGrade}
-        activeQuestion={aiCoachActiveQuestion}
-        onInsertGeneratedQuestions={handleInsertGeneratedQuestions}
       />
 
       <MistakeVaultModal

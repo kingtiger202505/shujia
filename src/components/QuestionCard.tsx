@@ -50,10 +50,13 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   const [isReading, setIsReading] = useState(false);
 
   useEffect(() => {
-    // 换题时停止朗读
+    // 换题时停止朗读并彻底重置当前题目作答状态，避免带入下一题
     speechManager.stop();
     setIsReading(false);
-  }, [question.id]);
+    setSelectedIndex(previouslyAnsweredIndex !== undefined ? previouslyAnsweredIndex : null);
+    setShowExplanation(previouslyAnsweredIndex !== undefined);
+    setIsSubmitting(false);
+  }, [question.id, previouslyAnsweredIndex]);
 
   const handleReadQuestion = () => {
     if (isReading) {
@@ -103,7 +106,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
             第 {questionIndex + 1} / {totalQuestions} 题
           </span>
           <span className="text-[11px] sm:text-xs font-bold text-amber-900 bg-amber-100/80 px-2 sm:px-2.5 py-0.5 rounded-full">
-            {question.category === 'calc' ? '🧮 计算巧算' : question.category === 'word' ? '🎒 应用题' : '🧩 逻辑推理'}
+            {question.category === 'calc' ? '🧮 计算巧算' : question.category === 'word' ? '🎒 应用题' : question.category === 'multiplication_table' ? '⚡ 乘法口诀' : '🧩 逻辑推理'}
           </span>
         </div>
 
@@ -130,15 +133,6 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
           >
             <PenTool className="w-3.5 h-3.5" />
             <span>草稿箱</span>
-          </button>
-
-          {/* AI Tutor Hint */}
-          <button
-            onClick={() => onOpenAiCoachForQuestion(question)}
-            className="flex items-center gap-1 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-[11px] sm:text-xs px-2 sm:px-2.5 py-1 rounded-xl border border-indigo-200 transition-all font-semibold"
-          >
-            <Bot className="w-3.5 h-3.5 text-indigo-600" />
-            <span>AI提示</span>
           </button>
         </div>
       </div>

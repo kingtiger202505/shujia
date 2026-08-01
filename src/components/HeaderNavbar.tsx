@@ -170,10 +170,12 @@ export const HeaderNavbar: React.FC<HeaderNavbarProps> = ({
             {/* Coins */}
             <button 
               onClick={onOpenShop}
-              className="flex items-center gap-1 bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-900 px-2.5 py-1 rounded-full text-xs sm:text-sm font-bold transition-all shadow-2xs"
+              className="flex items-center gap-1.5 bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-900 px-3 py-1 rounded-full text-xs sm:text-sm font-bold transition-all shadow-2xs hover:scale-105"
+              title="学习金币：可用于在商店中喂养萌宠、升级、兑换帽子装扮！"
             >
               <Coins className="w-4 h-4 text-amber-500 fill-amber-400" />
-              <span>{userProgress.goldCoins}</span>
+              <span>{userProgress.goldCoins} 金币</span>
+              <span className="text-[10px] text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded-md hidden md:inline font-normal">去宠物商店 ➔</span>
             </button>
 
             {/* Stars */}
@@ -182,20 +184,20 @@ export const HeaderNavbar: React.FC<HeaderNavbarProps> = ({
               <span>{userProgress.starsCount}</span>
             </div>
 
-            {/* AI Coach Helper */}
+            {/* Unified Dynamic Generator Entry Point in Header */}
             <button
-              onClick={onOpenAiCoach}
-              className="flex items-center gap-1 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 px-2.5 py-1.5 rounded-xl text-xs font-semibold transition-all shadow-2xs"
-              title="小沪AI学习导师"
+              onClick={() => onTabChange('practice')}
+              className="flex items-center gap-1 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all shadow-2xs shrink-0"
+              title="沪教衔接一键智能出题中心"
             >
-              <Bot className="w-4 h-4 text-indigo-600 animate-bounce" />
-              <span className="hidden sm:inline">AI导师</span>
+              <Zap className="w-4 h-4 text-indigo-600 animate-pulse fill-indigo-200" />
+              <span className="hidden sm:inline">智能出题</span>
             </button>
 
             {/* Scratchpad (草稿纸) */}
             <button
               onClick={onOpenScratchpad}
-              className="flex items-center gap-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 px-2.5 py-1.5 rounded-xl text-xs font-semibold transition-all shadow-2xs"
+              className="flex items-center gap-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 px-2.5 py-1.5 rounded-xl text-xs font-semibold transition-all shadow-2xs shrink-0"
               title="打开演草纸"
             >
               <PenTool className="w-4 h-4 text-emerald-600" />
