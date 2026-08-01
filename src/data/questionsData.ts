@@ -1517,28 +1517,55 @@ export const INITIAL_BADGES = [
 
 export const SHOP_ITEMS = [
   {
+    id: 'item_pet_cookie',
+    name: '智慧能量饼干',
+    type: 'pet_food' as const,
+    cost: 30,
+    expGain: 50,
+    icon: '🍪',
+    description: '基础能量，提升神兽 50 点算力经验值！'
+  },
+  {
+    id: 'item_pet_steak',
+    name: '至尊算力战斧牛排',
+    type: 'pet_food' as const,
+    cost: 60,
+    expGain: 120,
+    icon: '🥩',
+    description: '强力大补！直接为神兽暴击增加 120 点经验！'
+  },
+  {
+    id: 'item_pet_star_elixir',
+    name: '九天星空算力仙丹',
+    type: 'pet_food' as const,
+    cost: 100,
+    expGain: 250,
+    icon: '🌟',
+    description: '传说级仙丹！直接爆破增长 250 点神兽极速经验！'
+  },
+  {
     id: 'item_hat_wizard',
     name: '学霸魔法帽',
     type: 'hat' as const,
     cost: 50,
     icon: '🧙‍♂️',
-    description: '戴上它，算力增加 100%！'
+    description: '戴上它，算力增幅 100%！'
   },
   {
     id: 'item_glasses_detective',
-    name: '逻辑侦探眼镜',
+    name: '逻辑侦探战镜',
     type: 'glasses' as const,
     cost: 80,
-    icon: '👓',
+    icon: '🕶️',
     description: '看清题目里的每一个隐藏陷阱。'
   },
   {
-    id: 'item_pet_cookie',
-    name: '智慧能量饼干',
-    type: 'pet_food' as const,
-    cost: 30,
-    icon: '🍪',
-    description: '喂养你的数学小宠物，提升经验等级！'
+    id: 'item_wings_angel',
+    name: '璀璨算力圣洁翅膀',
+    type: 'hat' as const,
+    cost: 120,
+    icon: '🪽',
+    description: '振翅高飞，神兽拥有漫天星光特效！'
   },
   {
     id: 'item_crown_gold',
@@ -1546,6 +1573,6 @@ export const SHOP_ITEMS = [
     type: 'hat' as const,
     cost: 150,
     icon: '👑',
-    description: '尊贵闪耀的沪教数学荣誉徽章！'
+    description: '尊贵闪耀的沪教数学最高荣誉皇冠！'
   }
 ];
